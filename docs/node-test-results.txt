@@ -1,0 +1,206 @@
+
+> neuro-atlas@1.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: 64-bit root IDs stay strings and reject numeric input
+ok 1 - 64-bit root IDs stay strings and reject numeric input
+  ---
+  duration_ms: 2.768555
+  type: 'test'
+  ...
+# Subtest: parallel neuropils are combined before thresholding
+ok 2 - parallel neuropils are combined before thresholding
+  ---
+  duration_ms: 1.763079
+  type: 'test'
+  ...
+# Subtest: region restriction happens before aggregation threshold
+ok 3 - region restriction happens before aggregation threshold
+  ---
+  duration_ms: 0.220486
+  type: 'test'
+  ...
+# Subtest: unknown transmitter and self loop are retained
+ok 4 - unknown transmitter and self loop are retained
+  ---
+  duration_ms: 0.365466
+  type: 'test'
+  ...
+# Subtest: weights are summed without 32-bit bitwise truncation
+ok 5 - weights are summed without 32-bit bitwise truncation
+  ---
+  duration_ms: 0.332251
+  type: 'test'
+  ...
+# Subtest: threshold sorting is deterministic
+ok 6 - threshold sorting is deterministic
+  ---
+  duration_ms: 0.321119
+  type: 'test'
+  ...
+# Subtest: overview region weights use actual region rows
+ok 7 - overview region weights use actual region rows
+  ---
+  duration_ms: 0.304698
+  type: 'test'
+  ...
+# Subtest: region bitsets handle bit 31 and multiple words
+ok 8 - region bitsets handle bit 31 and multiple words
+  ---
+  duration_ms: 0.219825
+  type: 'test'
+  ...
+# Subtest: root IDs and required nodes survive deterministic LOD sampling
+ok 9 - root IDs and required nodes survive deterministic LOD sampling
+  ---
+  duration_ms: 1.162064
+  type: 'test'
+  ...
+# Subtest: invalid indices in binary shard are rejected
+ok 10 - invalid indices in binary shard are rejected
+  ---
+  duration_ms: 0.937485
+  type: 'test'
+  ...
+# Subtest: valid shard offsets permit a neuron with no connections
+ok 11 - valid shard offsets permit a neuron with no connections
+  ---
+  duration_ms: 0.398462
+  type: 'test'
+  ...
+# Subtest: nonmonotonic binary offsets are rejected
+ok 12 - nonmonotonic binary offsets are rejected
+  ---
+  duration_ms: 0.200321
+  type: 'test'
+  ...
+# Subtest: LRU protects the most recently read shard
+ok 13 - LRU protects the most recently read shard
+  ---
+  duration_ms: 0.297773
+  type: 'test'
+  ...
+# Subtest: directed BFS returns a shortest path with weighted edges
+ok 14 - directed BFS returns a shortest path with weighted edges
+  ---
+  duration_ms: 18.253522
+  type: 'test'
+  ...
+# Subtest: directed BFS does not invent reverse edges
+ok 15 - directed BFS does not invent reverse edges
+  ---
+  duration_ms: 0.766429
+  type: 'test'
+  ...
+# Subtest: same source and target is a valid zero-hop path
+ok 16 - same source and target is a valid zero-hop path
+  ---
+  duration_ms: 0.22783
+  type: 'test'
+  ...
+# Subtest: hop limit is not falsely reported as graph-wide absence
+ok 17 - hop limit is not falsely reported as graph-wide absence
+  ---
+  duration_ms: 3.273084
+  type: 'test'
+  ...
+# Subtest: visited-node budget is not falsely reported as absence
+ok 18 - visited-node budget is not falsely reported as absence
+  ---
+  duration_ms: 0.293015
+  type: 'test'
+  ...
+# Subtest: cancellation is checked after an asynchronous load
+ok 19 - cancellation is checked after an asynchronous load
+  ---
+  duration_ms: 0.609677
+  type: 'test'
+  ...
+# Subtest: filters distinguish ignored query and exact connectivity tags
+ok 20 - filters distinguish ignored query and exact connectivity tags
+  ---
+  duration_ms: 0.411694
+  type: 'test'
+  ...
+# Subtest: view export explicitly marks a schematic subset and string IDs
+ok 21 - view export explicitly marks a schematic subset and string IDs
+  ---
+  duration_ms: 2.264349
+  type: 'test'
+  ...
+# Subtest: worker indexes all actual uploaded neurons and connection totals
+ok 22 - worker indexes all actual uploaded neurons and connection totals
+  ---
+  duration_ms: 2151.949575
+  type: 'test'
+  ...
+# Subtest: exact 64-bit root ID round trips through search and resolution
+ok 23 - exact 64-bit root ID round trips through search and resolution
+  ---
+  duration_ms: 49.417602
+  type: 'test'
+  ...
+# Subtest: transmitter filtering matches the full source count
+ok 24 - transmitter filtering matches the full source count
+  ---
+  duration_ms: 47.244288
+  type: 'test'
+  ...
+# Subtest: unknown IDs return null without aliasing a nearby large integer
+ok 25 - unknown IDs return null without aliasing a nearby large integer
+  ---
+  duration_ms: 3.052591
+  type: 'test'
+  ...
+# Subtest: paged metadata list uses real offset and no overlap
+ok 26 - paged metadata list uses real offset and no overlap
+  ---
+  duration_ms: 585.790745
+  type: 'test'
+  ...
+# Subtest: full selected-neuron adjacency matches independently computed node totals
+ok 27 - full selected-neuron adjacency matches independently computed node totals
+  ---
+  duration_ms: 39.238947
+  type: 'test'
+  ...
+# Subtest: overview LOD retains every displayed edge endpoint and threshold
+ok 28 - overview LOD retains every displayed edge endpoint and threshold
+  ---
+  duration_ms: 162.161543
+  type: 'test'
+  ...
+# Subtest: local direction filtering preserves edge orientation and selection
+ok 29 - local direction filtering preserves edge orientation and selection
+  ---
+  duration_ms: 15.055355
+  type: 'test'
+  ...
+# Subtest: actual neighboring neurons have a verified one-hop path
+ok 30 - actual neighboring neurons have a verified one-hop path
+  ---
+  duration_ms: 16.195868
+  type: 'test'
+  ...
+# Subtest: no-result filter yields an empty graph, never fabricated neurons
+ok 31 - no-result filter yields an empty graph, never fabricated neurons
+  ---
+  duration_ms: 55.939039
+  type: 'test'
+  ...
+# Subtest: invalid source ID is rejected before traversal
+ok 32 - invalid source ID is rejected before traversal
+  ---
+  duration_ms: 1.693446
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3424.320335

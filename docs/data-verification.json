@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "datasetVersion": "a7c35a5a0535ec6b",
+  "checks": {
+    "root_ids_unique_strings": true,
+    "positions_finite_schematic": true,
+    "asset_checksums": 549,
+    "in": {
+      "shards": 272,
+      "connectionRows": 5342446,
+      "synapses": 50666648,
+      "everyNeuronMatched": true
+    },
+    "out": {
+      "shards": 272,
+      "connectionRows": 5342446,
+      "synapses": 50666648,
+      "everyNeuronMatched": true
+    },
+    "overview_aggregates": 26000
+  },
+  "seconds": 4.217,
+  "audit": {
+    "neurons": 139255,
+    "connectionRows": 5342446,
+    "directedPairs": 3732460,
+    "synapses": 50666648,
+    "selfLoopRows": 0,
+    "unknownEndpoints": 0,
+    "duplicateNeuronIds": 0,
+    "inputSynapseTotal": 50666648,
+    "outputSynapseTotal": 50666648,
+    "inputRows": 5342446,
+    "outputRows": 5342446,
+    "coordinatesPresent": false,
+    "sourceSha256": {
+      "neurons.csv.gz": "6a6b3759e635f0f35a677d169052362131ec61d95f55919298b55c43fce4e719",
+      "names.csv.gz": "e541ef9ef4b9e62d798f165ae76853d15b84174cf1dce95392f313a491055332",
+      "classification.csv.gz": "e946b552f4056dfc977707be0674609832c3f64332a22d69dc0d9615e7aae663",
+      "connectivity_tags.csv.gz": "68c69cec13810fa543c600a5b9973d10718b449740e010834662be1dc1b8696c",
+      "consolidated_cell_types.csv.gz": "8aba246d71dc40361677493629972ce3883048c3d02010adc42bda22962a1a2d",
+      "connections_princeton.csv.gz": "445f996bf6c4b1803b9ba186189138a3061ff8623aa94c0abcf38af30a5bd48b"
+    }
+  }
+}

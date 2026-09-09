@@ -1,0 +1,48 @@
+# JavaScript dependencies and generated builds
+node_modules/
+/dist/
+/portable/
+.vite/
+*.tsbuildinfo
+
+# Raw datasets and temporary data builds (keep public/data for runtime use)
+/source-data/
+/public/data.previous/
+/public/.atlas-build-*/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs, coverage, and generated browser test artifacts
+*.log
+coverage/
+.coverage
+.coverage.*
+htmlcov/
+playwright-report/
+test-results/
+/docs/browser-*.png
+/docs/browser-export.json
+/docs/browser-test-results.json
+
+# Editor and operating system files
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini

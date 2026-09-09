@@ -1,0 +1,29 @@
+{
+  "name": "neuro-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A real-data FlyWire connectome explorer built with React and Three.js",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs",
+    "prepare:data": "python3 scripts/prepare_data.py --input source-data --output public/data",
+    "verify:data": "python3 scripts/verify_data.py --data public/data",
+    "build:portable": "node scripts/build-portable.mjs",
+    "start": "python3 scripts/serve.py"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^6.4.2",
+    "typescript": "5.9.3"
+  }
+}
