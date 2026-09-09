@@ -1,0 +1,73 @@
+{
+  "project": "Neuro Atlas — React + Three.js",
+  "verifiedDateKST": "2026-09-10",
+  "datasetVersion": "a7c35a5a0535ec6b",
+  "counts": {
+    "neurons": 139255,
+    "connectionRows": 5342446,
+    "uniqueDirectedPairs": 3732460,
+    "synapses": 50666648,
+    "regions": 79
+  },
+  "passed": [
+    {
+      "name": "Node unit tests",
+      "count": 21,
+      "evidence": "node-test-results.txt"
+    },
+    {
+      "name": "Actual dataset Worker integration tests",
+      "count": 11,
+      "evidence": "node-test-results.txt",
+      "runtime": "Node worker_threads adapter with HTTP Content-Encoding:gzip regression simulation, NOT a browser"
+    },
+    {
+      "name": "Local HTTP package server tests",
+      "count": 4,
+      "evidence": "server-test-results.txt"
+    },
+    {
+      "name": "Entire dataset compressed + decoded payload SHA-256 / size validation",
+      "count": 549,
+      "evidence": "data-verification.json"
+    },
+    {
+      "name": "Per-neuron full in/out adjacency totals and overview aggregates",
+      "evidence": "data-verification.json"
+    },
+    {
+      "name": "JSX/JS syntax diagnostics and unbundled ESM transpilation",
+      "count": 13,
+      "evidence": "portable-build.log"
+    }
+  ],
+  "notVerified": [
+    {
+      "name": "npm installation",
+      "reason": "External registry/CDN downloads unavailable in the execution container."
+    },
+    {
+      "name": "Vite production build",
+      "reason": "The required dependencies could not be installed. Portable ESM transpilation is a separate build route."
+    },
+    {
+      "name": "Browser end-to-end interaction suite",
+      "reason": "Managed Chromium rejected localhost navigation with ERR_BLOCKED_BY_ADMINISTRATOR. No interaction checks completed."
+    },
+    {
+      "name": "Three.js/WebGL visual output and device performance",
+      "reason": "Three.js download and managed-browser navigation unavailable. No rendered screenshot or FPS claim is supplied."
+    }
+  ],
+  "scope": {
+    "coordinates": "Schematic, deterministic class/type/side layout; no physical xyz or neuron skeletons in uploaded files.",
+    "connectivity": "All original region-specific connection rows retained in complete indexed adjacency.",
+    "overview": "Strongest 26000 directed pairs form biased overview candidates, then display caps are applied.",
+    "path": "Full outgoing adjacency; region/minSyn filters; minimum-hop BFS; max 8 hops and 12000 visited neurons.",
+    "simulation": "No neuronal activity, conductance, firing or inference-model simulation.",
+    "portable": "React local, Three.js 0.180.0 from pinned CDN; public/data shared by included server.",
+    "production": "npm build is configured to bundle React and Three.js locally; execution still unverified.",
+    "transportIntegrity": "Accepts either raw gzip bytes or browser-auto-decoded bytes only when the corresponding manifest-pinned SHA-256 and byte length match."
+  },
+  "integrity": "gzip-dual-sha256-v1"
+}

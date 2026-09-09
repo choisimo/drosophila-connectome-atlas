@@ -1,0 +1,4 @@
+# Only needed to regenerate or independently verify prepared data.
+# Starting the included portable frontend needs Python's standard library only.
+numpy>=1.26,<3
+pandas>=2.2,<3
