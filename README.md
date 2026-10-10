@@ -12,9 +12,23 @@
 
 [실행 GIF 다운로드](docs/assets/neuro-atlas-demo.gif) · 28.5초 · 약 30MB
 
-## 바로 실행
+## 저장소 checkout에서 실행
 
-전체 ZIP을 해제하고 `neuro-atlas` 디렉터리에서 실행합니다.
+Git checkout에는 생성물인 `portable/`, `dist/`와 원본 CSV 디렉터리 `source-data/`가 없습니다. 이미 변환된 `public/data/`는 저장소에 있으며 일반 실행에 원본 CSV 재생성은 필요하지 않습니다.
+
+저장소 루트에서 Node.js 20.19 이상과 npm으로 잠금 파일에 맞춰 의존성을 설치한 다음 간편 실행판을 생성합니다.
+
+```bash
+npm ci
+npm run build:portable
+python3 scripts/serve.py
+```
+
+`build:portable`은 TypeScript로 JSX를 변환하고 로컬 데이터·vendor 파일을 `portable/`로 복사합니다. 생성 전에 서버만 실행하면 기본 경로의 `portable/index.html`이 없어 종료됩니다. 런타임 CDN 의존성이 없는 빌드는 아래의 Vite 절차를 사용하세요.
+
+## 생성된 간편 실행 ZIP에서 실행
+
+이미 `portable/index.html`이 포함된 배포 ZIP을 받은 경우에만, ZIP을 해제한 `neuro-atlas` 디렉터리에서 바로 실행합니다.
 
 ```bash
 python3 scripts/serve.py
@@ -31,7 +45,7 @@ python3 scripts/serve.py
 Node.js 20.19 이상 및 npm이 필요합니다.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -44,7 +58,9 @@ python3 scripts/serve.py --directory dist
 
 이 방식은 React와 Three.js를 빌드 결과에 포함하므로 **런타임 CDN 의존성이 없습니다.** `dist/` 전체를 정적 서버로 배포할 수도 있습니다. HTTPS 또는 localhost를 사용하고 `data/`를 빼놓지 마세요.
 
-현재 실행 환경에서 npm 네트워크 접근이 막혀 `npm install`과 Vite 프로덕션 빌드는 수행하지 못했습니다. 포함된 `portable/`은 JSX를 ESM으로 변환한 별도 간편 실행판이며, Vite 프로덕션 빌드 검증을 대신하지 않습니다. `package-lock.json`도 생성되지 않았습니다. 운영에서는 설치·빌드 검증 후 생성된 잠금 파일을 커밋하세요.
+저장소에는 `package-lock.json`이 커밋되어 있습니다. 잠금 파일의 존재만으로 설치·빌드가 검증됐다고 볼 수는 없습니다. `portable/`은 별도로 생성하는 ESM 실행판으로 Vite 프로덕션 빌드 검증을 대신하지 않습니다.
+
+과거 검증 기록(`docs/verification-summary.json`, 2026-09-10 KST)은 당시 외부 패키지 다운로드 제약으로 npm 설치와 Vite 빌드를 수행하지 못했다고 명시합니다. 그 기록은 보존하며, 이번 문서 정리는 설치·빌드의 새 통과 결과를 추가하지 않습니다.
 
 ## 포함된 실제 데이터
 
@@ -58,9 +74,11 @@ python3 scripts/serve.py --directory dist
 | 원본에 없는 연결 끝점 | 0 |
 | 중복 뉴런 ID | 0 |
 
-데이터 버전 `93f11973e92ae8cf`는 이 앱에서 원본 해시로 생성한 식별자입니다. 원본 CSV만으로 확인할 수 없는 FlyWire 릴리스 번호를 붙이지 않았습니다.
+현재 `public/data/manifest.json` 및 `docs/verification-summary.json`의 데이터 버전 `a7c35a5a0535ec6b`는 이 앱에서 원본 해시로 생성한 식별자입니다. 원본 CSV만으로 확인할 수 없는 FlyWire 릴리스 번호를 붙이지 않았습니다.
 
-전체 ZIP에는 원본 `.csv.gz` 6개, 변환된 전체 인덱스, 프론트엔드 소스, 간편 실행 코드, 테스트가 들어 있습니다. `public/data/` 약 65 MB를 기본 데이터 저장소로 사용합니다. ZIP에서는 중복 용량을 줄이기 위해 `portable/data/`를 따로 넣지 않았으며, 포함된 `scripts/serve.py`가 `/data/` 요청을 `public/data/`로 연결합니다. 간편 실행판을 다른 정적 서버에 독립 배포하려면 `npm run build:portable`로 데이터까지 포함한 폴더를 다시 생성하거나 `public/data/`를 `portable/data/`로 복사하세요.
+저장소는 변환된 전체 인덱스, 프론트엔드 소스, 빌드·서버 스크립트와 테스트를 보관하며 `public/data/` 약 65 MB를 기본 데이터 저장소로 사용합니다. 원본 `.csv.gz` 6개는 별도 입력입니다. ZIP을 받았다면 실제 포함 파일을 확인하고, Git checkout에도 원본이나 생성물이 포함됐다고 가정하지 마세요.
+
+`scripts/serve.py`는 `/data/` 요청을 `public/data/`로 연결합니다. 간편 실행판을 다른 정적 서버에 독립 배포하려면 `npm run build:portable`로 데이터까지 포함한 폴더를 생성하세요.
 
 ## 화면과 조작
 
@@ -93,7 +111,7 @@ python3 scripts/serve.py --directory dist
 
 ## 데이터 재생성
 
-평소 실행에는 필요하지 않습니다. 원본 변경 시에만 수행합니다.
+평소 실행에는 필요하지 않습니다. 원본 변경 시에만 수행합니다. Git checkout에는 `source-data/`가 없으므로, 사용 권한이 있는 원본 CSV 6개를 아래 파일명으로 별도 준비해야 합니다.
 
 ```bash
 python3 -m venv .venv
@@ -136,14 +154,16 @@ src/
   styles.css
 scripts/                        재생성·검증·간편 서버·ESM 변환
 public/data/                    전체 버전 데이터셋
-portable/                       제공되는 간편 실행 프론트엔드
-source-data/                    첨부된 원본 6개
+portable/                       build:portable로 생성하는 간편 실행판 (Git 제외)
+source-data/                    별도 준비할 원본 6개 (Git checkout에 없음)
 vendor/                         간편 실행용 React 18.2 + MIT 고지
 ```
 
 대용량 읽기와 계산은 Web Worker에서 처리합니다. 메인 스레드는 UI와 GPU 렌더링을 담당합니다. 512개 뉴런 단위 샤드를 필요할 때만 읽고 LRU 캐시로 재사용합니다. 빠르게 검색·선택을 바꿨을 때 이전 결과가 현재 화면을 덮어쓰지 않도록 처리했습니다. 실패한 연결 요청, 워커 오류, WebGL 초기화 실패, GPU 컨텍스트 손실은 별도로 표시합니다.
 
-## 검증 결과와 남은 확인
+## 기록된 검증 결과와 남은 확인
+
+아래 항목은 `docs/verification-summary.json`의 2026-09-10 KST 기록입니다. 현재 checkout에 대한 새 실행 결과나 운영 수락을 의미하지 않습니다.
 
 - **완료:** Node 테스트 32개. 21개 단위 테스트 + 11개 실제 데이터 Worker 통합 테스트.
 - **완료:** 압축 데이터 549개 SHA-256·크기 검증. 입력·출력 인덱스의 모든 뉴런 합계, 5,342,446행, 50,666,648시냅스 보존 검증.
@@ -151,7 +171,7 @@ vendor/                         간편 실행용 React 18.2 + MIT 고지
 - **완료:** JSX/JS 13개 모듈의 portable ESM 변환과 구문 진단.
 - **미검증:** npm 설치, Vite 프로덕션 빌드, 브라우저 상호작용 전체 흐름, 실제 Three.js/WebGL 렌더링, 장치별 FPS.
 
-외부 패키지 다운로드가 차단되어 Three.js를 설치할 수 없었고, 제공된 Chromium의 관리자 URL 차단 정책 때문에 localhost 페이지 탐색도 실행되지 않았습니다. 이 환경 제약을 통과한 것처럼 처리하지 않았습니다. UI 및 WebGL에 대한 실제 브라우저 검증은 제공된 테스트로 대상 환경에서 수행해야 합니다.
+당시 검증 환경은 외부 패키지 다운로드 차단으로 Three.js를 설치하지 못했고, 제공된 Chromium의 관리자 URL 차단 정책 때문에 localhost 페이지 탐색도 실행하지 못했습니다. 이 환경 제약을 통과한 것으로 기록하지 않았습니다. UI 및 WebGL에 대한 실제 브라우저 검증은 제공된 테스트로 대상 환경에서 수행해야 합니다.
 
 ```bash
 npm test
@@ -163,7 +183,7 @@ python3 -m playwright install chromium
 python3 tests/browser_checks.py
 ```
 
-기존 Chromium 경로를 쓰려면 `CHROMIUM_EXECUTABLE=/path/to/chromium`을 설정할 수 있습니다. 테스트 주소는 `NEURO_TEST_URL`로 변경합니다. 브라우저 테스트 파일은 이 환경에서 **통과하지 않은 테스트**입니다. 마지막 성공 보고서가 있다면 실행 날짜와 결과를 확인하세요.
+기존 Chromium 경로를 쓰려면 `CHROMIUM_EXECUTABLE=/path/to/chromium`을 설정할 수 있습니다. 테스트 주소는 `NEURO_TEST_URL`로 변경합니다. 브라우저 테스트 파일은 위 과거 검증 환경에서 **통과하지 않은 테스트**입니다. 마지막 성공 보고서가 있다면 실행 날짜와 결과를 확인하세요.
 
 세부 결과는 `docs/verification-summary.json`, `docs/data-verification.json`, `docs/node-test-results.txt`를 참조하세요.
 
